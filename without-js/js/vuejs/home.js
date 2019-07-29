@@ -1,6 +1,7 @@
 new Vue({
     el: '#app',
     data: {
+        inPageProduct: false,
         faq: {
             currentQuestion: 0,
             questions: [
@@ -19,6 +20,7 @@ new Vue({
             ]
         },
         products: {
+            currentIndex: 0,
             data: [
                 {
                     name: 'Titre du produit 1',
@@ -61,6 +63,21 @@ new Vue({
                     date: '01.09.2018'
                 }
             ]
+        }
+    },
+    computed: {
+        currentProduct: function() {
+            return this.products.data[this.products.currentIndex]
+        }
+    },
+    methods: {
+        showProduct: function(i){
+            this.products.currentIndex = i
+            this.inPageProduct = true
+            window.scrollTo(0,0)
+        },
+        homeLink: function() {
+            this.inPageProduct = false
         }
     }
 }) 
